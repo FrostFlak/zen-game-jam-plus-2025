@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60da2a327ac4a3fae1fcf7e65264165, type: 3}
+  m_Name: QuickAccessManager
+  m_EditorClassIdentifier: 
+  items:
+  - displayName: EventSystem
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: Canvas
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: Button
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: Logger
+    scenePath: 
+  - displayName: SavingSystem
+    scenePath: 
+  - displayName: Helpers
+    scenePath: 
+  - displayName: Scripts
+    scenePath: 
+  - displayName: _Project
+    scenePath: 
+  - displayName: '[Debug Updater]'
+    scenePath: DontDestroyOnLoad
+  - displayName: Global Light 2D
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: Scenes
+    scenePath: 
+  - displayName: Resources
+    scenePath: 
+  - displayName: ProjectSettings
+    scenePath: 
