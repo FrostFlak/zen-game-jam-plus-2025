@@ -13,29 +13,33 @@ MonoBehaviour:
   m_Name: QuickAccessManager
   m_EditorClassIdentifier: 
   items:
-  - displayName: EventSystem
+  - displayName: AdsParent
     scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: Canvas
+  - displayName: DzenParent
     scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: Button
+  - displayName: Game
     scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: Logger
-    scenePath: 
-  - displayName: SavingSystem
-    scenePath: 
-  - displayName: Helpers
-    scenePath: 
-  - displayName: Scripts
-    scenePath: 
-  - displayName: _Project
-    scenePath: 
-  - displayName: '[Debug Updater]'
-    scenePath: DontDestroyOnLoad
-  - displayName: Global Light 2D
+  - displayName: UI
     scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: Scenes
-    scenePath: 
-  - displayName: Resources
-    scenePath: 
-  - displayName: ProjectSettings
-    scenePath: 
+  - displayName: SceneComponents
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: Game
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: DzenParent (1)
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: GameObject
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: DzenBar
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: DistractionBar
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: DzenBar
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: DistractionBar
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: ProgressBars
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: Background
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: Fill
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
