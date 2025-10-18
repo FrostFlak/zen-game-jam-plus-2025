@@ -13,33 +13,27 @@ MonoBehaviour:
   m_Name: QuickAccessManager
   m_EditorClassIdentifier: 
   items:
-  - displayName: AdsParent
+  - displayName: ProgressBars
     scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: DzenParent
+  - displayName: Canvas
     scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: Game
+  - displayName: Text (TMP)
     scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: UI
-    scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: SceneComponents
-    scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: Game
-    scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: DzenParent (1)
-    scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: GameObject
-    scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: DzenBar
-    scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: DistractionBar
-    scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: DzenBar
-    scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: DistractionBar
+  - displayName: Canvas
     scenePath: Assets/_Project/Scenes/SampleScene.unity
   - displayName: ProgressBars
     scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: Background
+  - displayName: Dzen
+    scenePath: 
+  - displayName: SplitAd(Clone)
     scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: Fill
+  - displayName: AdSprite
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: Canvas
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: AdSprite (1)
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: StaticAd(Clone)
+    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: AdSprite
     scenePath: Assets/_Project/Scenes/SampleScene.unity

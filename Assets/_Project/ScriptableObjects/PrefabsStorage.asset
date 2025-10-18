@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff4bb8b7f4b84a40b8240a1b53118c3d, type: 3}
   m_Name: PrefabsStorage
   m_EditorClassIdentifier: 
-  <AdPrefab>k__BackingField: {fileID: 633528566499110399, guid: 5597370ea64f30645bb56e3d61d15f74, type: 3}
+  <AdPrefabs>k__BackingField:
+  - Key: 1
+    Value: {fileID: 1581750707572386561, guid: c75a57ee547166e40ae078b9771e037a, type: 3}
+  - Key: 2
+    Value: {fileID: 3808872067275529606, guid: 9def3b6ed7b744d43a9ae04c758d218c, type: 3}
+  - Key: 3
+    Value: {fileID: 3007622401436447887, guid: 19257c3259a7eb1448f66e6b6c03ccd1, type: 3}
   <DzenPrefab>k__BackingField: {fileID: 3807721372586814152, guid: d81eb29355cc07841a357cea2d438130, type: 3}
