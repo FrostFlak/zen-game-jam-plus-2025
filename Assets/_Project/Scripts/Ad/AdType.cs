@@ -1,6 +1,9 @@
 ﻿public enum AdType {
     None,
     Static,
-    Moveable,
+    RandomMove,
     Split,
+    CursorFollower,
+    ShrinkOverTime,
+    ExpandOverTime
 }

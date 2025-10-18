@@ -5,12 +5,13 @@ public class MovingAd : BaseAd {
     private const float Speed = 3f;
     private Vector2 _targetPos;
     
-    protected override void OnEnable() {
-        base.OnEnable();
+    public override void Init() {
+        base.Init();
         
-        AdType = AdType.Moveable;
-        Weight = AdWeight.Weights[AdType];
+        AdType = AdType.RandomMove;
+        Weight = AdWeight.Weights[AdType].Weight;
     }
+
     protected override void Update() {
         transform.position = Vector2.MoveTowards(transform.position, _targetPos, Speed * Time.deltaTime);
         if (Vector2.Distance(transform.position, _targetPos) < 0.15f)
@@ -18,8 +19,10 @@ public class MovingAd : BaseAd {
     }
     
     private void SetNewTargetPosition() {
-        Vector2 min = Game.Instance.Camera.ScreenToWorldPoint(new Vector2(50, 50));
-        Vector2 max = Game.Instance.Camera.ScreenToWorldPoint(new Vector2(Screen.width - 50, Screen.height - 50));
+        var cam = Game.Instance.Camera;
+        Vector2 min = cam.ScreenToWorldPoint(new Vector2(50, 50));
+        Vector2 max = cam.ScreenToWorldPoint(new Vector2(Screen.width - 300, Screen.height - 300));
+
         _targetPos = new Vector2(Random.Range(min.x, max.x), Random.Range(min.y, max.y));
     }
 }

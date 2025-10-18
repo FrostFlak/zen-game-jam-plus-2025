@@ -1,0 +1,28 @@
+﻿using DG.Tweening;
+using UnityEngine;
+
+public class ShrinkingAd : BaseAd {
+
+    private Vector3 _initialScale;
+    
+    public override void Init() {
+        base.Init();
+        
+        AdType = AdType.ShrinkOverTime;
+        Weight = AdWeight.Weights[AdType].Weight;
+
+        _initialScale = transform.localScale; 
+        transform
+            .DOScale(new Vector3(0.5f, 0.5f, 0.5f), Game.Instance.AdsManager.GetLifetime() * 1.25f)
+            .SetEase(Ease.OutBack);
+    }
+
+    protected override void Update() { }
+
+    public override void Deinit() {
+        base.Deinit();
+
+        transform.DOKill();
+        transform.localScale = _initialScale;
+    }
+}

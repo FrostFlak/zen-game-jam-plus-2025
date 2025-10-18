@@ -71,13 +71,13 @@ namespace Helpers {
         #region Grid
         private void CreateGrid() {
             if (_cellRadius == 0) {
-                Debug.LogError("Cell radius is 0");
+                Log.Error("Cell radius is 0");
                 
                 return;
             }
 
             if (_gridWorldSize == Vector2.zero) {
-                Debug.LogError("Grid world size is 0");
+                Log.Error("Grid world size is 0");
                 
                 return;
             }

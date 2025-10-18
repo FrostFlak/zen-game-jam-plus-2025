@@ -1,17 +1,16 @@
 ﻿public class SplitAd : BaseAd {
     
-    private const int SplitParts = 3;
+    private const int SplitParts = 2;
     
-    protected override void OnEnable() {
-        base.OnEnable();
+    public override void Init() {
+        base.Init();
         
         AdType = AdType.Split;
-        Weight = AdWeight.Weights[AdType];
+        Weight = AdWeight.Weights[AdType].Weight;
     }
     
-    protected override void Update() {
-        
-    }
+    protected override void Update() { }
+    
 
     protected override void OnExpire() {
         base.OnExpire();

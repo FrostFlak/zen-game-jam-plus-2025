@@ -65,6 +65,9 @@ namespace Helpers {
             float elapsed = 0f;
             
             while (elapsed < _duration) {
+                if (Game.Instance.StateManager != null)
+                    yield return new WaitWhile(() => Game.Instance.StateManager.IsPaused.Value());
+                
                 elapsed += Time.deltaTime;
                 Remaining = Mathf.Max(0, _duration - elapsed);
                 onProgress?.Invoke(Mathf.Clamp01(elapsed / _duration));

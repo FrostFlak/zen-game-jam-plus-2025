@@ -11,18 +11,27 @@ public class AdsManager {
 
     private const float MinSpawnInterval = .5f;
     private const float MaxSpawnInterval = 3f;
-    private const int MaxAdsOnScreen = 10;
+    private const int MaxAdsOnScreen = 5; // of each type
 
     private Coroutine _spawnCoroutine;
 
     public Observable<int> ActiveAds { get; private set; } = new(0);
+    public event Action OnAdLifetimeExpired;
 
     public AdsManager() {
-        var staticAd = Game.Instance.PrefabsStorage.AdPrefabs.FirstOrDefault(k => k.Key == AdType.Static).Value;
-        var moveAd = Game.Instance.PrefabsStorage.AdPrefabs.FirstOrDefault(k => k.Key == AdType.Moveable).Value;
-        var splitAd = Game.Instance.PrefabsStorage.AdPrefabs.FirstOrDefault(k => k.Key == AdType.Split).Value;
-
-        _adPool = new ObjectPool<BaseAd>(new[] { splitAd, moveAd, staticAd }, MaxAdsOnScreen, Game.Instance.AdsParent);
+        _adPool = new ObjectPool<BaseAd>(
+            new[] {
+                Game.Instance.PrefabsStorage.AdPrefabs.FirstOrDefault(kv => kv.Key == AdType.Static).Value,
+                Game.Instance.PrefabsStorage.AdPrefabs.FirstOrDefault(kv => kv.Key == AdType.RandomMove).Value,
+                Game.Instance.PrefabsStorage.AdPrefabs.FirstOrDefault(kv => kv.Key == AdType.Split).Value,
+                Game.Instance.PrefabsStorage.AdPrefabs.FirstOrDefault(kv => kv.Key == AdType.CursorFollower).Value,
+                Game.Instance.PrefabsStorage.AdPrefabs.FirstOrDefault(kv => kv.Key == AdType.ShrinkOverTime).Value,
+                Game.Instance.PrefabsStorage.AdPrefabs.FirstOrDefault(kv => kv.Key == AdType.ExpandOverTime).Value
+            },
+            MaxAdsOnScreen,
+            Game.Instance.AdsParent
+        );
+        
         foreach (var ad in _adPool.Pool) {
             ad.OnClose += OnAdClose;
             ad.OnLifetimeExpired += OnAdExpired;
@@ -49,55 +58,43 @@ public class AdsManager {
             yield return new WaitUntil(() => Game.Instance.StateManager.IsGameStarted.Value());
             yield return new WaitUntil(() => !Game.Instance.StateManager.IsPaused.Value());
 
-            var interval = GetSpawnInterval();
+            var interval = Game.Instance.GetWaveInterval(MaxSpawnInterval, MinSpawnInterval);
             yield return new WaitForSeconds(interval);
-
-            Log.Debug($"Ad interval: {interval}");
             Spawn();
         }
     }
 
-    private float GetSpawnInterval() {
-        float progress;
-
-        var dzen = Game.Instance.DzenManager.DzenAmount.Value();
-        if (dzen >= StateManager.InitialDzenAmount)
-            progress = Mathf.InverseLerp(StateManager.InitialDzenAmount, StateManager.WinDzenCount, dzen);
-        else
-            progress = -Mathf.InverseLerp(StateManager.LoseDzenCount, StateManager.InitialDzenAmount, dzen);
-
-        // Ads should spawn faster as player gets closer to winning
-        float baseInterval = Mathf.Lerp(MaxSpawnInterval, MinSpawnInterval, Mathf.Clamp01(progress * 0.5f + 0.5f));
-
-        // // Modify interval based on number of active ads — more ads → faster spawn
-        // float adFactor = Mathf.Lerp(1f, 0.4f, Mathf.Clamp01((float)ActiveAds.Value() / MaxAdsOnScreen));
-
-        return baseInterval;
-    }
-
     public void Spawn(AdType requiredType = AdType.None) {
         AdType spawnType = requiredType;
-
+    
         if (requiredType == AdType.None)
             spawnType = GetWeightedType();
+        
+        if (!_adPool.Pool.Exists(a => a.AdType == spawnType))
+            spawnType = _adPool.Pool.FirstOrDefault().AdType;
 
         var ad = _adPool.Get(x => x.AdType == spawnType);
-        ad.SetLifetime(3);
-        ad.transform.position = ScreenHelper.GetRandomScreenPosition(0.15f);
+        ad.Init();
+        ad.transform.position = ScreenHelper.GetRandomScreenPosition(0.25f);
         
         ActiveAds.Set(ActiveAds.Value() + 1);
     }
 
+    public float GetLifetime() {
+        float progress = Mathf.Clamp01((float)Game.Instance.DzenManager.DzenAmount.Value() / StateManager.WinDzenCount);
+        return Mathf.Lerp(4f, 2.5f, progress);
+    }
+    
     private AdType GetWeightedType() {
         float totalWeight = 0f;
         foreach (var kv in AdWeight.Weights)
-            totalWeight += kv.Value;
+            totalWeight += kv.Value.Weight;
 
         float rnd = Random.Range(0f, totalWeight);
         float cumulative = 0f;
 
         foreach (var kv in AdWeight.Weights) {
-            cumulative += kv.Value;
+            cumulative += kv.Value.Weight;
             if (rnd <= cumulative)
                 return kv.Key;
         }
@@ -106,17 +103,20 @@ public class AdsManager {
     }
 
     private void OnAdClose(BaseAd ad) {
-        if (!_adPool.TryRelease(ad))
-            return;
+        Game.Instance.AudioManager.PlayCloseAdSFX();
         
-        ActiveAds.Set(ActiveAds.Value() - 1);        
+        ad.Deinit();
+        _adPool.Release(ad);
+        ActiveAds.Set(ActiveAds.Value() - 1);
     }
     
     private void OnAdExpired(BaseAd ad) {
-        if (!_adPool.TryRelease(ad))
-            return;
+        OnAdLifetimeExpired?.Invoke();
         
+        ad.Deinit();
+        _adPool.Release(ad);
         ActiveAds.Set(ActiveAds.Value() - 1);
+        
         Game.Instance.DzenManager.DzenAmount.Set(
             Math.Max(0, Game.Instance.DzenManager.DzenAmount.Value() - 1)
         );

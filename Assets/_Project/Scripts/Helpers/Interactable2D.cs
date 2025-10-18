@@ -1,20 +1,18 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Helpers {
     [RequireComponent(typeof(Collider2D))]
-    public class Interactable2D : MonoBehaviour {
+    public class Interactable2D : MonoBehaviour, IPointerDownHandler {
+        public event Action OnClick;
 
-        public event Action OnMouseDownEvent;
-        public event Action OnMouseUpEvent;
-        public event Action OnMouseEnterEvent;
-        public event Action OnMouseExitEvent;
-        public event Action OnMouseOverEvent;
-
-        private void OnMouseDown() => OnMouseDownEvent?.Invoke();
-        private void OnMouseUp() => OnMouseUpEvent?.Invoke();
-        private void OnMouseEnter() => OnMouseEnterEvent?.Invoke();
-        private void OnMouseExit() => OnMouseExitEvent?.Invoke();
-        private void OnMouseOver() => OnMouseOverEvent?.Invoke();
+        public void OnPointerDown(PointerEventData eventData) {
+            Vector2 worldPoint = Camera.main.ScreenToWorldPoint(eventData.position);
+            RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
+            
+            if (hit.collider != null)
+                OnClick?.Invoke();
+        }
     }
 }

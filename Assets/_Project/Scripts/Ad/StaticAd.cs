@@ -1,11 +1,10 @@
 ﻿public class StaticAd : BaseAd {
-    protected override void OnEnable() {
-        base.OnEnable();
+    public override void Init() {
+        base.Init();
         
         AdType = AdType.Static;
-        Weight = AdWeight.Weights[AdType];
+        Weight = AdWeight.Weights[AdType].Weight;
     }
 
-    protected override void Update() {
-    }
+    protected override void Update() { }
 }

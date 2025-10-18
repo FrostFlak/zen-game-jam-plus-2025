@@ -122,13 +122,10 @@ namespace Helpers
         /// <summary>
         /// Release an object back to the pool
         /// </summary>
-        public bool TryRelease(T obj) {
-            if (Pool.Contains(obj))
-                return false; 
-                    
-            Pool.Add(obj);
+        public void Release(T obj) {
             SetActiveIfGameObject(obj, false);
-            return true;
+            if (!Pool.Contains(obj))
+                Pool.Add(obj);
         }
 
         /// <summary>
