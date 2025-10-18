@@ -5,8 +5,7 @@ public class CursorFollowerAd : BaseAd
     private const float Speed = 5f;
     private Vector2 _targetPos;
 
-    public override void Init()
-    {
+    public override void Init() {
         base.Init();
 
         AdType = AdType.CursorFollower;

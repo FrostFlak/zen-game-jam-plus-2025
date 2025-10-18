@@ -10,7 +10,9 @@ public class AdsManager {
     private readonly ObjectPool<BaseAd> _adPool;
 
     private const float MinSpawnInterval = .5f;
-    private const float MaxSpawnInterval = 3f;
+    private const float MaxSpawnInterval = 3.2f;
+    private const float MaxLifetime = 2.5f;
+    private const float MinLifetime = 1.15f;
     private const int MaxAdsOnScreen = 5; // of each type
 
     private Coroutine _spawnCoroutine;
@@ -82,7 +84,7 @@ public class AdsManager {
 
     public float GetLifetime() {
         float progress = Mathf.Clamp01((float)Game.Instance.DzenManager.DzenAmount.Value() / StateManager.WinDzenCount);
-        return Mathf.Lerp(4f, 2.5f, progress);
+        return Mathf.Lerp(MaxLifetime, MinLifetime, progress);
     }
     
     private AdType GetWeightedType() {

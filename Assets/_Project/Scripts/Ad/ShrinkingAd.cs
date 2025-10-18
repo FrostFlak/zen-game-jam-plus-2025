@@ -13,7 +13,7 @@ public class ShrinkingAd : BaseAd {
 
         _initialScale = transform.localScale; 
         transform
-            .DOScale(new Vector3(0.5f, 0.5f, 0.5f), Game.Instance.AdsManager.GetLifetime() * 1.25f)
+            .DOScale(new Vector3(0.5f, 0.5f, 0.5f), Game.Instance.AdsManager.GetLifetime())
             .SetEase(Ease.OutBack);
     }
 

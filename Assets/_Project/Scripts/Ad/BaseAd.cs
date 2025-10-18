@@ -46,13 +46,9 @@ public abstract class BaseAd : MonoBehaviour {
         );
     }
 
-    public virtual void Deinit() {
-        _lifeTimer.Stop();
-    }
+    public virtual void Deinit() => _lifeTimer.Stop();
     
-    private void UpdateLifetimeProgress(float progress) {
-        _lifetimeLabel.SetText(_lifeTimer.Remaining.ToString("F1", CultureInfo.InvariantCulture));
-    }
+    private void UpdateLifetimeProgress(float progress) => _lifetimeLabel.SetText(_lifeTimer.Remaining.ToString("F1", CultureInfo.InvariantCulture));
 
     protected virtual void OnCloseMouseDown() => OnClose?.Invoke(this);
 

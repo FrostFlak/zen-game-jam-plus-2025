@@ -18,11 +18,4 @@
         for (int i = 0; i < SplitParts; i++)
             Game.Instance.AdsManager.Spawn(AdType.Static);
     }
-
-    protected override void OnCloseMouseDown() {
-        base.OnCloseMouseDown();
-
-        for (int i = 0; i < SplitParts; i++)
-            Game.Instance.AdsManager.Spawn(AdType.Static);
-    }
 }

@@ -13,7 +13,7 @@ public class ExpandAd : BaseAd {
 
         _initialScale = transform.localScale; 
         transform
-            .DOScale(new Vector3(1.5f, 1.5f, 1.5f), Game.Instance.AdsManager.GetLifetime() * 1.25f)
+            .DOScale(new Vector3(1.5f, 1.5f, 1.5f), Game.Instance.AdsManager.GetLifetime())
             .SetEase(Ease.OutBack);
     }
 

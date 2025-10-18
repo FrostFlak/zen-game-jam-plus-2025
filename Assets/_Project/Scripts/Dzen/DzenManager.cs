@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Helpers;
 using UnityEngine;
 
@@ -7,10 +6,10 @@ public class DzenManager {
     
     private readonly ObjectPool<Dzen> _dzenPool;
     
-    private const float MinSpawnInterval = .35f;
-    private const float MaxSpawnInterval = 1.85f;
-    private const float MaxLifetime = 3f;
-    private const float MinLifetime = 1.5f;
+    private const float MinSpawnInterval = .75f;
+    private const float MaxSpawnInterval = 2.25f;
+    private const float MaxLifetime = 2.75f;
+    private const float MinLifetime = 1.25f;
     private const int MaxDzenOnScreen = 20;
 
     private Coroutine _spawnCoroutine;
@@ -64,7 +63,6 @@ public class DzenManager {
     
     private void OnDzenGather(Dzen dzen) {
         _dzenPool.Release(dzen);
-        // var amount = Mathf.RoundToInt(Game.Instance.StreakController.DzenMultiplier * 1);
         DzenAmount.Set(DzenAmount.Value() + 1);
     }
     

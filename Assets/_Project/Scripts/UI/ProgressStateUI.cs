@@ -35,7 +35,7 @@ public class ProgressStateUI : MonoBehaviour {
     }
 
     private void OnGatherDzenAmount(int _, int dzenCount) {
-        _dzenAmountLabel.SetText(dzenCount.ToString());
+        _dzenAmountLabel.SetText($"{dzenCount}%");
 
         float loseProgress = GetProgressValue(dzenCount, StateManager.LoseDzenCount, StateManager.InitialDzenAmount);
         float winProgress = GetProgressValue(dzenCount, StateManager.WinDzenCount, StateManager.InitialDzenAmount);

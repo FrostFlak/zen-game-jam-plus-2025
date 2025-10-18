@@ -5,7 +5,7 @@ public class StateManager : IManualUpdate{
 
     public const int LoseDzenCount = 0;
     public const int InitialDzenAmount = 50;
-    public const int WinDzenCount = 200;
+    public const int WinDzenCount = 100;
 
     public Observable<bool> IsPaused = new(false);
     public Observable<bool> IsGameStarted = new(false);
@@ -13,23 +13,20 @@ public class StateManager : IManualUpdate{
     
     // Now fake the start, later add tutorial and then start the game
     public StateManager() {
-        new Timer(Game.Instance).Start(3,
-            onComplete: () => {
-                Log.Debug("Start the Game");
-                IsGameStarted.Set(true);
-
-                Game.Instance.DzenManager.DzenAmount.OnUpdate += OnDzenAmountChange;
-            }
-        );
+        IsGameStarted.OnUpdate += OnGameStarted;        
     }
-    
+
+    private void OnGameStarted(bool arg1, bool arg2) {
+        Game.Instance.DzenManager.DzenAmount.OnUpdate += OnDzenAmountChange;
+    }
+
     public void ManualUpdate() {
         if (IsGameStarted.Value() && !IsPaused.Value())
             ElapsedTimeFromStart += Time.deltaTime;
     }
 
     public void Deinitialize() {
-        
+        IsGameStarted.OnUpdate -= OnGameStarted;
     }
 
     private void CheckState() {

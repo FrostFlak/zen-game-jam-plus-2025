@@ -13,47 +13,81 @@ MonoBehaviour:
   m_Name: QuickAccessManager
   m_EditorClassIdentifier: 
   items:
-  - displayName: AdSprite
-    scenePath: 
-  - displayName: CloseBtnSprite
-    scenePath: 
-  - displayName: CursorFollowerAd
-    scenePath: 
-  - displayName: CursorFollowerAd
-    scenePath: 
-  - displayName: AdSprite
-    scenePath: 
-  - displayName: CloseBtnSprite
-    scenePath: 
-  - displayName: CursorFollowerAd
-    scenePath: 
-  - displayName: AdSprite
-    scenePath: 
-  - displayName: BaseAdVisual
-    scenePath: 
-  - displayName: BaseAdVisual
-    scenePath: 
-  - displayName: AdSprite
-    scenePath: 
-  - displayName: CloseBtnSprite
-    scenePath: 
-  - displayName: Dzen(Clone)
-    scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: Dzen(Clone)
-    scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: Dzen(Clone)
-    scenePath: Assets/_Project/Scenes/SampleScene.unity
-  - displayName: Dzen(Clone)
-    scenePath: Assets/_Project/Scenes/SampleScene.unity
+  - displayName: Game
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: AdsParent
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: DzenAmount
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: Arr (1)
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: Arr
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: Step2
+    scenePath: Assets/_Project/Scenes/Game.unity
   - displayName: Dzen
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: Tutorial
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: AudioStorage
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: DzenParent
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: UI
     scenePath: 
-  - displayName: Dzen
+  - displayName: Sprites
     scenePath: 
-  - displayName: AdSprite
+  - displayName: _Project
     scenePath: 
-  - displayName: BaseAdVisual
+  - displayName: UniversalRP
     scenePath: 
-  - displayName: BaseAdVisual
+  - displayName: Settings
     scenePath: 
-  - displayName: Ads
+  - displayName: TextMesh Pro
     scenePath: 
+  - displayName: UniversalRenderPipelineGlobalSettings
+    scenePath: 
+  - displayName: DefaultVolumeProfile 1
+    scenePath: 
+  - displayName: DefaultVolumeProfile
+    scenePath: 
+  - displayName: Renderer2D
+    scenePath: 
+  - displayName: CustomToolbarSettings
+    scenePath: 
+  - displayName: QuickAccessManager
+    scenePath: 
+  - displayName: CustomToolbar
+    scenePath: 
+  - displayName: URP2DSceneTemplate
+    scenePath: Assets/Settings/Scenes/URP2DSceneTemplate.unity
+  - displayName: Scenes
+    scenePath: 
+  - displayName: Lit2DSceneTemplate
+    scenePath: 
+  - displayName: AmaticSC-Regular SDF
+    scenePath: 
+  - displayName: AmaticSC-Regular
+    scenePath: 
+  - displayName: AmaticSC-Bold
+    scenePath: 
+  - displayName: Fonts
+    scenePath: 
+  - displayName: Sound
+    scenePath: 
+  - displayName: music
+    scenePath: 
+  - displayName: CloseAdSource
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: AudioStorage
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: Game
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: Text (TMP)
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: Step4
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: Step3
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: Step2
+    scenePath: Assets/_Project/Scenes/Game.unity
