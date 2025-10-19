@@ -30,6 +30,14 @@ public static class AdWeight {
             AdType.ExpandOverTime,
             new AdRarityStruct(AdRarity.Rare)
         },
+        {
+            AdType.RotationAd,
+            new AdRarityStruct(AdRarity.Epic)
+        },
+        {
+            AdType.FallingAd,
+            new AdRarityStruct(AdRarity.Rare)
+        },
     };
     
     public enum AdRarity {

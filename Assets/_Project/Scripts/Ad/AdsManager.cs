@@ -9,10 +9,10 @@ public class AdsManager {
 
     private readonly ObjectPool<BaseAd> _adPool;
 
-    private const float MinSpawnInterval = .55f;
-    private const float MaxSpawnInterval = 2.5f;
-    private const float MaxLifetime = 2f;
-    private const float MinLifetime = 1f;
+    private const float MinSpawnInterval = .9f;
+    private const float MaxSpawnInterval = 2.65f;
+    private const float MaxLifetime = 2.35f;
+    private const float MinLifetime = 1.35f;
     private const int MaxAdsOnScreen = 5; // of each type
 
     private Coroutine _spawnCoroutine;
@@ -28,7 +28,9 @@ public class AdsManager {
                 Game.Instance.PrefabsStorage.AdPrefabs.FirstOrDefault(kv => kv.Key == AdType.Split).Value,
                 Game.Instance.PrefabsStorage.AdPrefabs.FirstOrDefault(kv => kv.Key == AdType.CursorFollower).Value,
                 Game.Instance.PrefabsStorage.AdPrefabs.FirstOrDefault(kv => kv.Key == AdType.ShrinkOverTime).Value,
-                Game.Instance.PrefabsStorage.AdPrefabs.FirstOrDefault(kv => kv.Key == AdType.ExpandOverTime).Value
+                Game.Instance.PrefabsStorage.AdPrefabs.FirstOrDefault(kv => kv.Key == AdType.ExpandOverTime).Value,
+                Game.Instance.PrefabsStorage.AdPrefabs.FirstOrDefault(kv => kv.Key == AdType.RotationAd).Value,
+                Game.Instance.PrefabsStorage.AdPrefabs.FirstOrDefault(kv => kv.Key == AdType.FallingAd).Value
             },
             MaxAdsOnScreen,
             Game.Instance.AdsParent

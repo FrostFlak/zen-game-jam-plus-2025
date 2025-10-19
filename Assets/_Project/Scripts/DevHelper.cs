@@ -1,14 +1,13 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Debug : MonoBehaviour {
     
     #if UNITY_EDITOR
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Space))
-            Time.timeScale *= 3;
+            Time.timeScale *= 5;
         else if (Input.GetKeyUp(KeyCode.Space))
-            Time.timeScale /= 3;
+            Time.timeScale /= 5;
     }
 #endif
     

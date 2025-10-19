@@ -9,12 +9,13 @@ public class Game : SingletonMonoBehaviour<Game> {
     [field: SerializeField] public Transform DzenParent { get; private set; }
     [field: SerializeField] public Transform AdsParent { get; private set; }
     [field: SerializeField] public DzenPhraseDisplay DzenPhraseDisplay { get; private set; }
-
+    [field: SerializeField] public FaceChangerUI FaceChangerUI { get; private set; }
+    [field: SerializeField] public EndUI EndUI { get; private set; }
     public StateManager StateManager { get; private set; }
     public AdsManager AdsManager { get; private set; }
     public DzenManager DzenManager { get; private set; }
     public StreakController StreakController { get; private set; }
-    
+
 
     protected override void Awake() {
         base.Awake();
@@ -23,6 +24,7 @@ public class Game : SingletonMonoBehaviour<Game> {
         AdsManager = new AdsManager();
         DzenManager = new DzenManager();
         DzenPhraseDisplay.Init();
+        FaceChangerUI.Init();
         // StreakController = new StreakController();
     }
 

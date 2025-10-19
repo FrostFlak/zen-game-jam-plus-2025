@@ -13,47 +13,35 @@ MonoBehaviour:
   m_Name: QuickAccessManager
   m_EditorClassIdentifier: 
   items:
-  - displayName: UI
+  - displayName: ShrinkAd
+    scenePath: 
+  - displayName: CloseBtnSprite
+    scenePath: 
+  - displayName: AdSprite
+    scenePath: 
+  - displayName: Canvas
+    scenePath: 
+  - displayName: ExpandableAd
+    scenePath: 
+  - displayName: ExpandableAd
+    scenePath: 
+  - displayName: Game
     scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: Woman
+  - displayName: Menu
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: Game
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: Menu
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: Menu
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: ZenImg
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: Text (TMP)
     scenePath: Assets/_Project/Scenes/Game.unity
   - displayName: Game
     scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: EventSystem
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: Global Light 2D
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: Main Camera
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: UI
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: UniversalRenderPipelineGlobalSettings
+  - displayName: GameObject
     scenePath: 
-  - displayName: PostProc
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: CreditsUi
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: SettingsUI
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: SceneComponents
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: Switch
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: UI
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: Click (1)
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: Click
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: switch8
+  - displayName: Dzen
     scenePath: 
-  - displayName: Click
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: click0
-    scenePath: 
-  - displayName: click0
-    scenePath: 
-  - displayName: UI
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: TransitionManage
-    scenePath: Assets/_Project/Scenes/Menu.unity

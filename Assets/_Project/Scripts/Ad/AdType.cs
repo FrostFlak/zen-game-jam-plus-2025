@@ -5,5 +5,7 @@
     Split,
     CursorFollower,
     ShrinkOverTime,
-    ExpandOverTime
+    ExpandOverTime,
+    RotationAd,
+    FallingAd
 }
