@@ -9,10 +9,10 @@ public class AdsManager {
 
     private readonly ObjectPool<BaseAd> _adPool;
 
-    private const float MinSpawnInterval = .5f;
-    private const float MaxSpawnInterval = 3.2f;
-    private const float MaxLifetime = 2.5f;
-    private const float MinLifetime = 1.15f;
+    private const float MinSpawnInterval = .55f;
+    private const float MaxSpawnInterval = 2.5f;
+    private const float MaxLifetime = 2f;
+    private const float MinLifetime = 1f;
     private const int MaxAdsOnScreen = 5; // of each type
 
     private Coroutine _spawnCoroutine;
@@ -34,7 +34,9 @@ public class AdsManager {
             Game.Instance.AdsParent
         );
         
-        foreach (var ad in _adPool.Pool) {
+        Game.Instance.StateManager.IsGameStarted.OnUpdate += OnGameStateChange;
+        
+        foreach (var ad in _adPool.All) {
             ad.OnClose += OnAdClose;
             ad.OnLifetimeExpired += OnAdExpired;
         }
@@ -43,10 +45,12 @@ public class AdsManager {
     }
 
     public void Deinitialize() {
-        foreach (var ad in _adPool.Pool) {
+        foreach (var ad in _adPool.All) {
             ad.OnClose -= OnAdClose;
             ad.OnLifetimeExpired -= OnAdExpired;
         }
+
+        Game.Instance.StateManager.IsGameStarted.OnUpdate -= OnGameStateChange;
         
         if (_spawnCoroutine == null)
             return;
@@ -103,6 +107,18 @@ public class AdsManager {
 
         return AdType.Static;
     }
+    
+    private void OnGameStateChange(bool arg1, bool started) {
+        if (started)
+            return;
+        
+        Game.Instance.StopCoroutine(_spawnCoroutine);
+
+        foreach (var ad in _adPool.All) {
+            ad.Deinit();
+            ad.gameObject.SetActive(false);
+        }
+    }
 
     private void OnAdClose(BaseAd ad) {
         Game.Instance.AudioManager.PlayCloseAdSFX();
@@ -120,7 +136,7 @@ public class AdsManager {
         ActiveAds.Set(ActiveAds.Value() - 1);
         
         Game.Instance.DzenManager.DzenAmount.Set(
-            Math.Max(0, Game.Instance.DzenManager.DzenAmount.Value() - 1)
+            Math.Max(0, Game.Instance.DzenManager.DzenAmount.Value() - ad.DzenPrice)
         );
     }
 }

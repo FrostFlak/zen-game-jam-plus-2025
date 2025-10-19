@@ -14,7 +14,12 @@ namespace Helpers
     {
         private readonly Transform parent;
         private readonly List<T> prefabs;
-        public List<T> Pool { get; private set; } = new(); // single list for pool
+
+        // Available objects
+        public List<T> Pool { get; private set; } = new(); 
+
+        // All objects ever instantiated (including those currently in Pool)
+        public List<T> All { get; private set; } = new();
 
         /// <summary>
         /// Constructor for single prefab
@@ -39,7 +44,8 @@ namespace Helpers
         /// <summary>
         /// Pre-instantiate objects from all prefabs
         /// </summary>
-        private void Prewarm(int countPerPrefab) {
+        private void Prewarm(int countPerPrefab) 
+        {
             foreach (var prefab in prefabs)
             {
                 for (int i = 0; i < countPerPrefab; i++)
@@ -47,47 +53,50 @@ namespace Helpers
                     T obj = Object.Instantiate(prefab);
                     SetActiveIfGameObject(obj, false);
                     Pool.Add(obj);
+                    All.Add(obj); // <-- track all instantiated objects
+                    if (parent != null)
+                    {
+                        if (obj is GameObject go) go.transform.SetParent(parent);
+                        else if (obj is Component c) c.transform.SetParent(parent);
+                    }
                 }
             }
         }
 
-
-        /// <summary>
-        /// Get an object from the pool (last-in, first-out)
-        /// </summary>
         public T Get()
         {
             if (Pool.Count == 0)
-                return Object.Instantiate(prefabs[UnityEngine.Random.Range(0, prefabs.Count)]);
+            {
+                T obj = Object.Instantiate(prefabs[UnityEngine.Random.Range(0, prefabs.Count)]);
+                All.Add(obj); // track new instance
+                SetActiveIfGameObject(obj, true);
+                return obj;
+            }
 
             int lastIndex = Pool.Count - 1;
-            T obj = Pool[lastIndex];
+            T objFromPool = Pool[lastIndex];
             Pool.RemoveAt(lastIndex);
-
-            SetActiveIfGameObject(obj, true);
-            return obj;
+            SetActiveIfGameObject(objFromPool, true);
+            return objFromPool;
         }
 
-        /// <summary>
-        /// Get a random object from the pool
-        /// </summary>
         public T GetRandom()
         {
             if (Pool.Count == 0)
-                return Object.Instantiate(prefabs[UnityEngine.Random.Range(0, prefabs.Count)]);
+            {
+                T obj = Object.Instantiate(prefabs[UnityEngine.Random.Range(0, prefabs.Count)]);
+                All.Add(obj);
+                SetActiveIfGameObject(obj, true);
+                return obj;
+            }
 
             int index = UnityEngine.Random.Range(0, Pool.Count);
-            T obj = Pool[index];
+            T objFromPool = Pool[index];
             Pool.RemoveAt(index);
-
-            SetActiveIfGameObject(obj, true);
-            return obj;
+            SetActiveIfGameObject(objFromPool, true);
+            return objFromPool;
         }
 
-        /// <summary>
-        /// Get an object from the pool by condition (predicate)
-        /// Example: pool.Get(x => ((BaseAd)(object)x).AdType == AdType.Static)
-        /// </summary>
         public T Get(Func<T, bool> predicate)
         {
             for (int i = 0; i < Pool.Count; i++)
@@ -101,45 +110,32 @@ namespace Helpers
                 }
             }
 
-            // If no object matches in pool, instantiate a prefab that satisfies the condition
             foreach (var prefab in prefabs)
             {
                 if (predicate(prefab))
                 {
                     T obj = Object.Instantiate(prefab);
+                    All.Add(obj);
                     SetActiveIfGameObject(obj, true);
                     return obj;
                 }
             }
 
-            // If still nothing matches, fallback to first prefab
             T fallback = Object.Instantiate(prefabs[0]);
+            All.Add(fallback);
             SetActiveIfGameObject(fallback, true);
             return fallback;
         }
 
-
-        /// <summary>
-        /// Release an object back to the pool
-        /// </summary>
-        public void Release(T obj) {
+        public void Release(T obj) 
+        {
             SetActiveIfGameObject(obj, false);
             if (!Pool.Contains(obj))
                 Pool.Add(obj);
         }
 
-        /// <summary>
-        /// Current number of objects available in the pool
-        /// </summary>
-        public int Count => Pool.Count;
-
-        /// <summary>
-        /// Activates/deactivates the associated GameObject if T is GameObject or Component
-        /// </summary>
-        private void SetActiveIfGameObject(T obj, bool active)
-        {
-            if (obj is GameObject go)
-            {
+        private void SetActiveIfGameObject(T obj, bool active) {
+            if (obj is GameObject go) {
                 go.SetActive(active);
                 if (!active && parent != null) go.transform.SetParent(parent);
             }

@@ -51,8 +51,8 @@ public static class AdWeight {
     private static int GetWeightByRarity(AdRarity rarity) {
         return rarity switch {
             AdRarity.Common => 50,
-            AdRarity.Rare => 15,
-            AdRarity.Epic => 7,
+            AdRarity.Rare => 20,
+            AdRarity.Epic => 10,
             _ => 0
         };
     }

@@ -3,6 +3,7 @@ using System.Numerics;
 using DG.Tweening;
 using Helpers;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
 public class Dzen : MonoBehaviour {
@@ -34,19 +35,36 @@ public class Dzen : MonoBehaviour {
     }
 
     public void SetLifetime(float time) {
+        bool popStarted = false;
+
         _lifeTimer.Start(
             time,
-            // onProgress: (p) => // Pulse
+            onProgress: _ => {
+                float remainingPct = _lifeTimer.Remaining / time;
+                if (popStarted || !(remainingPct <= 0.25f))
+                    return;
+                
+                popStarted = true;
+
+                transform
+                    .DOScale(Vector3.one * 1.25f, 0.075f)
+                    .SetLoops(-1, LoopType.Yoyo)
+                    .SetEase(Ease.OutQuad);
+            },
             onComplete: () => {
                 transform
                     .DOScale(Vector3.zero, 1f)
                     .OnComplete(() => OnExpire?.Invoke(this))
                     .SetEase(Ease.InOutBack);
-            });   
+            }
+        );   
     }
+
     
     private void OnGatherMouseDown() {
-        Vector3 screenPos = new Vector3(Screen.width / 2f, Screen.height, 0);
+        Game.Instance.AudioManager.PlayDzenCollctSFX();
+        
+        Vector2 screenPos = new Vector2(Screen.width / 2f, Screen.height / 1.15f);
         Vector3 worldPos = Game.Instance.Camera.ScreenToWorldPoint(screenPos);
         
         DOTween.Sequence()

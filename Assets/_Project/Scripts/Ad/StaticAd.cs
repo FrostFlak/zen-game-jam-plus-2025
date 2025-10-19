@@ -4,6 +4,7 @@
         
         AdType = AdType.Static;
         Weight = AdWeight.Weights[AdType].Weight;
+        DzenPrice = 1;
     }
 
     protected override void Update() { }

@@ -13,81 +13,47 @@ MonoBehaviour:
   m_Name: QuickAccessManager
   m_EditorClassIdentifier: 
   items:
+  - displayName: UI
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: Woman
+    scenePath: Assets/_Project/Scenes/Game.unity
   - displayName: Game
     scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: AdsParent
-    scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: DzenAmount
-    scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: Arr (1)
-    scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: Arr
-    scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: Step2
-    scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: Dzen
-    scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: Tutorial
-    scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: AudioStorage
-    scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: DzenParent
-    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: EventSystem
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: Global Light 2D
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: Main Camera
+    scenePath: Assets/_Project/Scenes/Menu.unity
   - displayName: UI
-    scenePath: 
-  - displayName: Sprites
-    scenePath: 
-  - displayName: _Project
-    scenePath: 
-  - displayName: UniversalRP
-    scenePath: 
-  - displayName: Settings
-    scenePath: 
-  - displayName: TextMesh Pro
-    scenePath: 
+    scenePath: Assets/_Project/Scenes/Menu.unity
   - displayName: UniversalRenderPipelineGlobalSettings
     scenePath: 
-  - displayName: DefaultVolumeProfile 1
+  - displayName: PostProc
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: CreditsUi
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: SettingsUI
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: SceneComponents
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: Switch
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: UI
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: Click (1)
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: Click
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: switch8
     scenePath: 
-  - displayName: DefaultVolumeProfile
+  - displayName: Click
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: click0
     scenePath: 
-  - displayName: Renderer2D
+  - displayName: click0
     scenePath: 
-  - displayName: CustomToolbarSettings
-    scenePath: 
-  - displayName: QuickAccessManager
-    scenePath: 
-  - displayName: CustomToolbar
-    scenePath: 
-  - displayName: URP2DSceneTemplate
-    scenePath: Assets/Settings/Scenes/URP2DSceneTemplate.unity
-  - displayName: Scenes
-    scenePath: 
-  - displayName: Lit2DSceneTemplate
-    scenePath: 
-  - displayName: AmaticSC-Regular SDF
-    scenePath: 
-  - displayName: AmaticSC-Regular
-    scenePath: 
-  - displayName: AmaticSC-Bold
-    scenePath: 
-  - displayName: Fonts
-    scenePath: 
-  - displayName: Sound
-    scenePath: 
-  - displayName: music
-    scenePath: 
-  - displayName: CloseAdSource
-    scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: AudioStorage
-    scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: Game
-    scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: Text (TMP)
-    scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: Step4
-    scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: Step3
-    scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: Step2
-    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: UI
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: TransitionManage
+    scenePath: Assets/_Project/Scenes/Menu.unity

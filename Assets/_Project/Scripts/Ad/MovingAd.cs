@@ -10,6 +10,7 @@ public class MovingAd : BaseAd {
         
         AdType = AdType.RandomMove;
         Weight = AdWeight.Weights[AdType].Weight;
+        DzenPrice = 1;
     }
 
     protected override void Update() {

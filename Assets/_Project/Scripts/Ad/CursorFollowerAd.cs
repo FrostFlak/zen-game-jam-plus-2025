@@ -10,6 +10,7 @@ public class CursorFollowerAd : BaseAd
 
         AdType = AdType.CursorFollower;
         Weight = AdWeight.Weights[AdType].Weight;
+        DzenPrice = 2;
     }
 
     protected override void Update() {

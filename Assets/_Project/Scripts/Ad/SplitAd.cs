@@ -7,6 +7,7 @@
         
         AdType = AdType.Split;
         Weight = AdWeight.Weights[AdType].Weight;
+        DzenPrice = 2;
     }
     
     protected override void Update() { }

@@ -6,10 +6,10 @@ public class DzenManager {
     
     private readonly ObjectPool<Dzen> _dzenPool;
     
-    private const float MinSpawnInterval = .75f;
-    private const float MaxSpawnInterval = 2.25f;
-    private const float MaxLifetime = 2.75f;
-    private const float MinLifetime = 1.25f;
+    private const float MinSpawnInterval = 1f;
+    private const float MaxSpawnInterval = 3f;
+    private const float MaxLifetime = 2f;
+    private const float MinLifetime = 1f;
     private const int MaxDzenOnScreen = 20;
 
     private Coroutine _spawnCoroutine;
@@ -19,8 +19,10 @@ public class DzenManager {
     public DzenManager() {
         _dzenPool = new ObjectPool<Dzen>(Game.Instance.PrefabsStorage.DzenPrefab, MaxDzenOnScreen, Game.Instance.DzenParent);
         _spawnCoroutine = Game.Instance.StartCoroutine(SpawnRoutine());
+        
+        Game.Instance.StateManager.IsGameStarted.OnUpdate += OnGameStateChange;
 
-        foreach (var dz in _dzenPool.Pool) {
+        foreach (var dz in _dzenPool.All) {
             dz.OnGather += OnDzenGather;
             dz.OnExpire += OnDzenExpired;
         }
@@ -30,7 +32,9 @@ public class DzenManager {
         if (_spawnCoroutine == null) 
             return;
         
-        foreach (var dz in _dzenPool.Pool) {
+        Game.Instance.StateManager.IsGameStarted.OnUpdate -= OnGameStateChange;
+        
+        foreach (var dz in _dzenPool.All) {
             dz.OnGather -= OnDzenGather;
             dz.OnExpire -= OnDzenExpired;
         }
@@ -59,6 +63,16 @@ public class DzenManager {
     private float GetLifetime() {
         float progress = Mathf.Clamp01((float)DzenAmount.Value() / StateManager.WinDzenCount);
         return Mathf.Lerp(MaxLifetime, MinLifetime, progress);
+    }
+    
+    private void OnGameStateChange(bool arg1, bool started) {
+        if (started)
+            return;
+        
+        Game.Instance.StopCoroutine(_spawnCoroutine);
+
+        foreach (var dzen in _dzenPool.All)
+            dzen.gameObject.SetActive(false);
     }
     
     private void OnDzenGather(Dzen dzen) {

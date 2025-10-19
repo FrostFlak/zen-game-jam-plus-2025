@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class TutorialController : MonoBehaviour {
+ 
     [Header("Steps")]
-    public List<GameObject> Steps = new List<GameObject>();
-
+    public List<GameObject> Steps = new();
     [Header("UI")]
     public GameObject TutorialPanel;
-
     [Header("Settings")]
     public bool StartOnAwake = false;
 
@@ -69,6 +66,7 @@ public class TutorialController : MonoBehaviour {
         _isRunning = false;
         _currentStepIndex = -1;
 
+        Game.Instance.AudioManager.SetKeyboardSFX(false);
         Game.Instance.StateManager.IsGameStarted.Set(true);
         
         if (TutorialPanel != null)
@@ -81,6 +79,7 @@ public class TutorialController : MonoBehaviour {
             return;
 
         step.SetActive(true);
+        Game.Instance.AudioManager.SetKeyboardSFX(true);
         _typingRoutine = StartCoroutine(TypeText(CurrentStep.GetComponentInChildren<TMP_Text>()));
 
     }
@@ -92,6 +91,8 @@ public class TutorialController : MonoBehaviour {
             label.text += c;
             yield return new WaitForSecondsRealtime(.005f);
         }
+        
+        Game.Instance.AudioManager.SetKeyboardSFX(false);
     }
 
     private void HideCurrentStep() {

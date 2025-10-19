@@ -17,6 +17,7 @@ public abstract class BaseAd : MonoBehaviour {
     public event Action<BaseAd> OnLifetimeExpired;
     public AdType AdType { get; protected set; } = AdType.None;
     public int Weight { get; protected set; }
+    public int DzenPrice { get; protected set; }
 
     private void Awake() {
         _lifeTimer = new Timer(this);
