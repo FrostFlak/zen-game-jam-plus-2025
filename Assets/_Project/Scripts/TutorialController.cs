@@ -1,56 +1,65 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TutorialController : MonoBehaviour {
  
     [Header("Steps")]
-    public List<GameObject> Steps = new();
+    [SerializeField] private List<GameObject> _steps = new();
     [Header("UI")]
-    public GameObject TutorialPanel;
+    [SerializeField] private Image _panel;
     [Header("Settings")]
-    public bool StartOnAwake = false;
+    [SerializeField] private bool _startOnAwake = true;
 
     private int _currentStepIndex = -1;
     private bool _isRunning;
     private Coroutine _typingRoutine;
+    private bool _isLockedForClicks;
 
-    private GameObject CurrentStep => (_currentStepIndex >= 0 && _currentStepIndex < Steps.Count) ? Steps[_currentStepIndex] : null;
+    private GameObject CurrentStep => (_currentStepIndex >= 0 && _currentStepIndex < _steps.Count) ? _steps[_currentStepIndex] : null;
 
     private void Awake() {
-        if (StartOnAwake)
+        if (_startOnAwake)
             StartTutorial();
         else
-            StopAllTutorialUI();
+            _panel.gameObject.SetActive(false);
     }
 
     private void Update() {
         if (!_isRunning) 
             return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !_isLockedForClicks)
             NextStep();
     }
 
+    private void OnDisable() {
+        if (_typingRoutine != null)
+            StopCoroutine(_typingRoutine);
+    }
+
     public void StartTutorial() {
-        if (_isRunning || Steps.Count == 0)
+        if (_isRunning || _steps.Count == 0)
             return;
 
         _isRunning = true;
         _currentStepIndex = -1;
 
-        if (TutorialPanel != null)
-            TutorialPanel.SetActive(true);
+        if (_panel != null)
+            _panel.gameObject.SetActive(true);
 
         NextStep();
     }
 
     public void NextStep() {
+        _isLockedForClicks = true;
         HideCurrentStep();
 
         _currentStepIndex++;
-        if (_currentStepIndex >= Steps.Count) {
+        if (_currentStepIndex >= _steps.Count) {
             EndTutorial();
             return;
         }
@@ -69,8 +78,7 @@ public class TutorialController : MonoBehaviour {
         Game.Instance.AudioManager.SetKeyboardSFX(false);
         Game.Instance.StateManager.IsGameStarted.Set(true);
         
-        if (TutorialPanel != null)
-            TutorialPanel.SetActive(false);
+        _panel.DOFade(0, 1f).OnComplete(() => _panel.gameObject.SetActive(false));
     }
 
     private void ShowCurrentStep() {
@@ -93,6 +101,7 @@ public class TutorialController : MonoBehaviour {
         }
         
         Game.Instance.AudioManager.SetKeyboardSFX(false);
+        _isLockedForClicks = false;
     }
 
     private void HideCurrentStep() {
@@ -101,10 +110,5 @@ public class TutorialController : MonoBehaviour {
             return;
 
         step.SetActive(false);
-    }
-
-    private void StopAllTutorialUI() {
-        if (TutorialPanel != null)
-            TutorialPanel.SetActive(false);
     }
 }

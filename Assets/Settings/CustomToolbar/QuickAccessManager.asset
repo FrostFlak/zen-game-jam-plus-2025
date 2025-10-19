@@ -13,35 +13,45 @@ MonoBehaviour:
   m_Name: QuickAccessManager
   m_EditorClassIdentifier: 
   items:
-  - displayName: ShrinkAd
+  - displayName: AmaticSC-Bold SDF
     scenePath: 
-  - displayName: CloseBtnSprite
+  - displayName: Fonts
     scenePath: 
-  - displayName: AdSprite
-    scenePath: 
+  - displayName: Game
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: Main Camera
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: UI
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: Menu
+    scenePath: Assets/_Project/Scenes/Menu.unity
   - displayName: Canvas
-    scenePath: 
-  - displayName: ExpandableAd
-    scenePath: 
-  - displayName: ExpandableAd
-    scenePath: 
-  - displayName: Game
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: UI
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: TransitionManage
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: Audio
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: SceneComponents
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: Menu
+    scenePath: Assets/_Project/Scenes/Menu.unity
+  - displayName: Tutorial
     scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: Menu
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: Game
+  - displayName: Step3
     scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: Menu
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: Menu
-    scenePath: Assets/_Project/Scenes/Menu.unity
-  - displayName: ZenImg
+  - displayName: AdImage
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: Arr (1)
     scenePath: Assets/_Project/Scenes/Game.unity
   - displayName: Text (TMP)
     scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: Game
+  - displayName: Step2
     scenePath: Assets/_Project/Scenes/Game.unity
-  - displayName: GameObject
-    scenePath: 
-  - displayName: Dzen
-    scenePath: 
+  - displayName: Step4
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: Step5
+    scenePath: Assets/_Project/Scenes/Game.unity
+  - displayName: Step1
+    scenePath: Assets/_Project/Scenes/Game.unity
